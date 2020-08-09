@@ -3,3 +3,5 @@ node_modules
 /*.log
 fullchain.pem
 privkey.pem
+
+size-plugin.json
