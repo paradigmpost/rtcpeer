@@ -10,8 +10,8 @@ import { TypedEventTarget } from '../../util/typed-event-target';
 
 export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   private readonly connection: RTCPeerConnection;
-  private offered: boolean = false;
-  private ignored: boolean = false;
+  private offered = false;
+  private ignored = false;
 
   private get stable() {
     return this.connection.signalingState == 'stable';
@@ -31,7 +31,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
    * When setting up a signaling server mechanism, messages from the corresponding RTCPeer should call these methods.
    */
 
-  async handleCandidate(candidate: RTCIceCandidate) {
+  async handleCandidate(candidate: RTCIceCandidate): Promise<void> {
     try {
       await this.connection.addIceCandidate(candidate);
     } catch (err) {
@@ -39,7 +39,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
     }
   }
 
-  async handleDescription(description: RTCSessionDescription) {
+  async handleDescription(description: RTCSessionDescription): Promise<void> {
     // determine if there's an offer collision and ignore/acknowledge appropriately
     if (this.isCollisionWithDescription(description)) {
       if (!this.polite) {
@@ -125,7 +125,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   }
 
   // we want to use the same media stream that is the source for the track, so that if it is stopped the tx also hopefully stops
-  addTrack(track: MediaStreamTrack, stream: MediaStream) {
+  addTrack(track: MediaStreamTrack, stream: MediaStream): void {
     this.track?.stop()
     this.connection.addTrack(track, stream);
   }

@@ -1,0 +1,14 @@
+# Examples directory
+examples/
+
+# Dependencies
+node_modules/
+
+# TypeScript build output
+*.js
+*.map
+*.d.ts
+src/**/*.js
+src/**/*.map
+src/**/*.d.ts
+

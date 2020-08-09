@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
+    "lint": "npx eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,9 @@
   },
   "homepage": "https://github.com/samtheprogram/RTCSession#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
     "typescript": "^3.9.7"
   }
 }
