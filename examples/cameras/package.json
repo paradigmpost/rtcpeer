@@ -11,11 +11,6 @@
     "test": "jest ./tests",
     "rtcsession:dev": "npm run build && npm run serve"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{css,md,scss}": "prettier --write",
     "*.{js,jsx,ts,tsx}": "eslint --fix"
@@ -44,10 +39,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
-    "husky": "^4.2.1",
     "jest": "^26.2.2",
     "jest-preset-preact": "^4.0.2",
-    "lint-staged": "^10.0.7",
     "preact-cli": "^3.0.0",
     "prettier": "^1.19.1",
     "sirv-cli": "^1.0.0-next.3",
