@@ -17,7 +17,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
     return this.connection.signalingState == 'stable';
   }
 
-  constructor(private readonly polite: boolean = false) {
+  constructor() {
     super();
     this.connection = new RTCPeerConnection();
     this.connection.addEventListener('track', (ev) => this.onTrack(ev));
@@ -42,7 +42,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   async handleDescription(description: RTCSessionDescription): Promise<void> {
     // determine if there's an offer collision and ignore/acknowledge appropriately
     if (this.isCollisionWithDescription(description)) {
-      if (!this.polite) {
+      if (!this.isPoliteWithDescription(description)) {
         this.ignored = true;
         return;
       } else {
@@ -72,6 +72,23 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
 
   private isCollisionWithDescription(description: RTCSessionDescription) {
     return description.type == 'offer' && (this.offered || !this.stable);
+  }
+
+  private isPoliteWithDescription(description: RTCSessionDescription) {
+    if (this.connection.localDescription == null) return true;
+
+    const localGuid = this.guidFromDescription(this.connection.localDescription);
+    const remoteGuid = this.guidFromDescription(description);
+
+    return localGuid == null || remoteGuid == null || localGuid > remoteGuid;
+  }
+
+  private guidFromDescription(description: RTCSessionDescription | null): string | null {
+    return description?.sdp
+      .split("\n")
+      .filter(str => str.match(/^o=/))
+      .pop()
+      ?.replace(/^o=/, '') || null;
   }
 
   /**

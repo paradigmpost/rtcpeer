@@ -35,10 +35,9 @@ interface Message {
 
 const CameraPeer: FunctionalComponent<{
     message: Message | null;
-    polite: boolean;
     send: (_: { [key: string]: any }) => void;
 }> = ({ children: _1, ref: _2, ...props }) => {
-    const { message, polite, send } = props;
+    const { message, send } = props;
     const [busy, setBusy] = useState(false);
     const [peer, setPeer] = useState<RTCPeer | null>(null);
     const [recvStream, setRecvStream] = useState<MediaStream | null>(null);
@@ -49,7 +48,7 @@ const CameraPeer: FunctionalComponent<{
     }
 
     useEffect(() => {
-        setPeer(new RTCPeer(polite));
+        setPeer(new RTCPeer());
     }, []);
 
     useEffect(() => {
@@ -130,10 +129,10 @@ const App: FunctionalComponent = () => {
         <div id="app">
             <h1>Cameras App</h1>
             <DeclarativeFrame>
-                <CameraPeer polite={true} message={recv1} send={send2} />
+                <CameraPeer message={recv1} send={send2} />
             </DeclarativeFrame>
             <DeclarativeFrame>
-                <CameraPeer polite={false} message={recv2} send={send1} />
+                <CameraPeer message={recv2} send={send1} />
             </DeclarativeFrame>
         </div>
     );
