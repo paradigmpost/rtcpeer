@@ -5,8 +5,9 @@ import {
   RTCPeerStreamsEvent
 } from "./events";
 
-import { unexpectedError } from '../../util/unexpected-error';
+import { guidFromDescription } from '../../util/guid-from-description';
 import { TypedEventTarget } from '../../util/typed-event-target';
+import { unexpectedError } from '../../util/unexpected-error';
 
 export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   private readonly connection: RTCPeerConnection;
@@ -77,18 +78,10 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   private isPoliteWithDescription(description: RTCSessionDescription) {
     if (this.connection.localDescription == null) return true;
 
-    const localGuid = this.guidFromDescription(this.connection.localDescription);
-    const remoteGuid = this.guidFromDescription(description);
+    const localGuid = guidFromDescription(this.connection.localDescription);
+    const remoteGuid = guidFromDescription(description);
 
     return localGuid == null || remoteGuid == null || localGuid > remoteGuid;
-  }
-
-  private guidFromDescription(description: RTCSessionDescription | null): string | null {
-    return description?.sdp
-      .split("\n")
-      .filter(str => str.match(/^o=/))
-      .pop()
-      ?.replace(/^o=/, '') || null;
   }
 
   /**
