@@ -1,7 +1,7 @@
 export type RTCPeerEventMap = {
-    "candidate": RTCPeerCandidateEvent;
-    "description": RTCPeerDescriptionEvent;
-    "streams": RTCPeerStreamsEvent;
+  candidate: RTCPeerCandidateEvent;
+  description: RTCPeerDescriptionEvent;
+  streams: RTCPeerStreamsEvent;
 }
 
 export class RTCPeerCandidateEvent extends Event {
