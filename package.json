@@ -1,0 +1,24 @@
+{
+  "name": "rtcpeer",
+  "version": "0.1.0",
+  "description": "A wrapper for RTCPeerConnection implementing perfect negotiation.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samtheprogram/RTCSession.git"
+  },
+  "author": "Samuel Moore <sam@paradigmpost.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/samtheprogram/RTCSession/issues"
+  },
+  "homepage": "https://github.com/samtheprogram/RTCSession#readme",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
