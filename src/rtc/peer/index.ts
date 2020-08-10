@@ -88,7 +88,6 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
    * RTCPeerConnection Event Handlers
    */
 
-  // TODO: should we attempt to disable ICE Trickling?
   private onIceCandidate(ev: RTCPeerConnectionIceEvent) {
     const { candidate } = ev;
     this.dispatchEvent(new RTCPeerCandidateEvent(candidate));
@@ -124,7 +123,6 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
    * Media
    */
 
-  // TODO: support more than 1 track per session
   // - currentDirection may not be supported? https://caniuse.com/#search=currentDirection
   get track(): MediaStreamTrack | null {
     const transceiver = this.connection.getTransceivers()
@@ -134,7 +132,6 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
     return transceiver?.sender.track || null;
   }
 
-  // we want to use the same media stream that is the source for the track, so that if it is stopped the tx also hopefully stops
   addTrack(track: MediaStreamTrack, stream: MediaStream): void {
     this.track?.stop()
     this.connection.addTrack(track, stream);

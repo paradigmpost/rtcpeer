@@ -70,7 +70,6 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
     return !!this.peers[id];
   }
 
-  // TODO: remove tracks from these peers
   removePeer(id: string): void {
     console.log('removePeer:', id);
     const dispose = this.disposables[id];
@@ -79,7 +78,6 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
     delete this.peers[id];
   }
 
-  // TODO: add removeStream
   addStream(stream: MediaStream) {
     Object.keys(this.peers).map(k => this.peers[k]!).forEach((peer) => {
       this.addStreamForPeer(stream, peer);
