@@ -49,7 +49,7 @@ export class RTCPeer
     return this.connection.signalingState == 'stable';
   }
 
-  constructor() {
+  constructor(private polite: boolean | null = null) {
     super();
     this.connection = new RTCPeerConnection();
     this.connection.addEventListener('track', (ev) => this.onTrack(ev));
@@ -107,6 +107,7 @@ export class RTCPeer
   }
 
   private isPoliteWithDescription(description: RTCSessionDescription) {
+    if (this.polite !== null) return this.polite;
     if (this.connection.localDescription == null) return true;
 
     const localGuid = guidFromDescription(this.connection.localDescription);
