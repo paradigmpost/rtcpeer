@@ -5,7 +5,7 @@
   "scripts": {
     "build": "preact build --no-prerender",
     "serve": "sirv build --port 8080 --cors --single --http2 --cert ./fullchain.pem --key ./privkey.pem --host central-2.us.paradigmpost.com",
-    "dev": "preact watch --https --cert ./fullchain.pem --key ./privkey.pem",
+    "dev": "preact watch --port 8081 --https --cert ./fullchain.pem --key ./privkey.pem",
     "test": "jest ./tests",
     "rtcsession:dev": "npm run build && npm run serve"
   },
