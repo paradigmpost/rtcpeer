@@ -4,6 +4,7 @@ import {
   RTCPeerEventMap,
   RTCPeerStreamsEvent
 } from "./events";
+import { RTPMediaExtensions } from './interfaces';
 
 import { guidFromDescription } from '../../util/guid-from-description';
 import { TypedEventTarget } from '../../util/typed-event-target';
@@ -36,7 +37,10 @@ import { unexpectedError } from '../../util/unexpected-error';
  * peer2.addTrack(stream.getTracks()[0], stream);
  * ```
  */
-export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
+export class RTCPeer
+  extends TypedEventTarget<RTCPeerEventMap> 
+  implements RTPMediaExtensions
+{
   private readonly connection: RTCPeerConnection;
   private offered = false;
   private ignored = false;
@@ -147,21 +151,30 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   }
 
   /**
-   * Media
+   * RTPMediaExtensions
    */
 
-  // - currentDirection may not be supported? https://caniuse.com/#search=currentDirection
-  get track(): MediaStreamTrack | null {
-    const transceiver = this.connection.getTransceivers()
-      .filter(t => t.currentDirection != 'stopped')
-      .pop();
+  getSenders(): RTCRtpSender[] { return this.connection.getSenders(); }
+  getReceivers(): RTCRtpReceiver[] { return this.connection.getReceivers(); }
+  getTransceivers(): RTCRtpTransceiver[] { return this.connection.getTransceivers(); }
 
-    return transceiver?.sender.track || null;
+  addTrack(track: MediaStreamTrack, ...streams: MediaStream[]): RTCRtpSender {
+    return this.connection.addTrack(track, ...streams);
   }
 
-  addTrack(track: MediaStreamTrack, stream: MediaStream): void {
-    this.track?.stop()
-    this.connection.addTrack(track, stream);
+  removeTrack(sender: RTCRtpSender): void { this.connection.removeTrack(sender); }
+  
+  addTransceiver(
+    trackOrKind: MediaStreamTrack | string,
+    init?: RTCRtpTransceiverInit
+  ): RTCRtpTransceiver {
+    return this.connection.addTransceiver(trackOrKind, init);
   }
 
+  get ontrack(): ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null {
+    throw new Error('DOM 0 style events are not supported. Use addEventListener instead.');
+  }
+  set ontrack(_: ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null) {
+    throw new Error('DOM 0 style events are not supported. Use addEventListener instead.');
+  }
 }
