@@ -1,6 +1,6 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/compat";
-import { RTCPeer } from "../../../index.js";
+import { RTCPeerManager } from "../../../index.js";
 import { DeclarativeFrame, Video } from "./components";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,6 +8,8 @@ if ((module as any).hot) {
     // tslint:disable-next-line:no-var-requires
     require("preact/debug");
 }
+
+const getRandomNumber = () => window.crypto.getRandomValues(new Uint32Array(16384)).reduce((total, each) => total + each, 0);
 
 const whiteNoise = async (width: number, height: number) => {
     const canvas = Object.assign(document.createElement("canvas"), {
@@ -31,51 +33,62 @@ const whiteNoise = async (width: number, height: number) => {
 interface Message {
     candidate?: any;
     description?: any;
+    id: string;
 }
 
 const CameraPeer: FunctionalComponent<{
+    id: string,
     message: Message | null;
-    send: (_: { [key: string]: any }) => void;
+    otherPeers: string[],
+    send: (_: { [key: string]: any, from: string, to: string }) => void;
 }> = ({ children: _1, ref: _2, ...props }) => {
-    const { message, send } = props;
+    const { id: _id, message, otherPeers, send } = props;
     const [busy, setBusy] = useState(false);
-    const [peer, setPeer] = useState<RTCPeer | null>(null);
-    const [recvStream, setRecvStream] = useState<MediaStream | null>(null);
+    const [peerManager, setPeerManager] = useState<RTCPeerManager | null>(null);
+    const [recvStreams, setRecvStreams] = useState<{ [key: string]: MediaStream | null }>({});
     const [sendStream, setSendStream] = useState<MediaStream | null>(null);
 
-    if (recvStream != null) {
-        console.log("we have a recvStream!!:", recvStream);
-    }
+    // if (Object.keys(recvStreams).length > 0) {
+    //     console.log("we have a recvStream!!:", recvStreams);
+    // }
 
     useEffect(() => {
-        setPeer(new RTCPeer());
+        setPeerManager(new RTCPeerManager(_id));
     }, []);
 
     useEffect(() => {
-        console.log("peer:", peer);
-        peer?.addEventListener("candidate", ({ candidate }) =>
-            send({ candidate })
-        );
-        peer?.addEventListener("description", ({ description }) =>
-            send({ description })
-        );
-        peer?.addEventListener("streams", ({ streams }) =>
-            setRecvStream(streams[0] || null)
-        );
-    }, [peer]);
+        peerManager?.addEventListener("candidate", ({ id, event }) => {
+            const { candidate } = event;
+            send({ to: id, from: peerManager!.id, candidate });
+        });
+        peerManager?.addEventListener("description", ({ id, event }) => {
+            const { description } = event;
+            send({ to: id, from: peerManager!.id, description });
+        });
+        peerManager?.addEventListener("streams", ({ id, event }) => {
+            const { streams } = event;
+            // make sure it's a string key
+            setRecvStreams(Object.assign(recvStreams, { ["_" + id]: streams[0] || null }));
+        });
+
+        if (peerManager) otherPeers.forEach(peerId => peerManager.addPeer(peerId));
+    }, [peerManager]);
 
     useEffect(() => {
-        console.log("message:", message);
+        console.log('recvStreams:', recvStreams);
+    }, [recvStreams])
+
+    useEffect(() => {
         if (message == null) return;
-        const { candidate, description } = message;
+        const { id, candidate, description } = message;
 
         if (candidate) {
-            peer?.handleCandidate(candidate);
+            peerManager?.handleCandidate(id, candidate);
             return;
         }
 
         if (description) {
-            peer?.handleDescription(description);
+            peerManager?.handleDescription(id, description);
             return;
         }
     }, [message]);
@@ -87,53 +100,85 @@ const CameraPeer: FunctionalComponent<{
 
     const onCameraChecked = async (ev: Event) => {
         const checkbox = ev.target as HTMLInputElement;
+        const endStream = (stream: MediaStream) => {
+            stream.getTracks().forEach(t => t.stop());
+        };
 
         if (checkbox.checked) {
             setBusy(true);
+            if (sendStream) endStream(sendStream);
+            setSendStream(null);
+
             const stream = await getUserCamera();
-            peer!.addTrack(stream.getTracks()[0], stream);
-            if (!sendStream) setSendStream(stream);
+            peerManager!.addStream(stream);
+            setSendStream(stream);
             setBusy(false);
         } else {
-            peer!.track?.stop();
+            if (sendStream) endStream(sendStream);
         }
     };
 
     return (
         <Fragment>
-            {recvStream != null && (
-                <Video
-                    width={160}
-                    height={120}
-                    autoplay={true}
-                    srcObject={recvStream}
-                />
-            )}
-            <label>
-                <input
-                    type="checkbox"
-                    disabled={busy}
-                    onClick={onCameraChecked}
-                />
-                Camera
-            </label>
+            <table>
+                <tr>
+                    <td>
+                        <b>{_id}</b>
+                    </td>
+                    <td>
+                        <label>
+                            <input
+                                type="checkbox"
+                                disabled={busy}
+                                onClick={onCameraChecked}
+                            />
+                            Camera
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    {Object.keys(recvStreams).map(k => recvStreams[k]!).map((stream) => (
+                        <td>
+                            <Video
+                                width={160}
+                                height={120}
+                                autoplay={true}
+                                srcObject={stream}
+                            />
+                        </td>
+                    ))}
+                </tr>
+            </table>
         </Fragment>
     );
 };
 
+const peers = [
+  getRandomNumber().toString(),
+  getRandomNumber().toString(),
+  getRandomNumber().toString(),
+];
+
 const App: FunctionalComponent = () => {
-    const [recv1, send1] = useState<Message | null>(null);
-    const [recv2, send2] = useState<Message | null>(null);
+    const [messages, setMessages] = useState<{ [key: string]: Message | null }>({});
+
+    const send: ((data: { to: string, from: string, candidate?: RTCIceCandidate, description?: RTCSessionDescription }) => void) = ({ to, from, ...partialMessage }) => {
+        const message: Message = { ...partialMessage, id: from };
+        
+        setMessages({
+          ...messages,
+          [to]: message
+        });
+    };
 
     return (
         <div id="app">
             <h1>Cameras App</h1>
-            <DeclarativeFrame>
-                <CameraPeer message={recv1} send={send2} />
-            </DeclarativeFrame>
-            <DeclarativeFrame>
-                <CameraPeer message={recv2} send={send1} />
-            </DeclarativeFrame>
+            {peers.map((id) => (
+              <DeclarativeFrame>
+                <CameraPeer id={id} message={messages[id]} otherPeers={peers.filter(other => other != id)} send={send} />
+              </DeclarativeFrame>
+            ))}
         </div>
     );
 };
