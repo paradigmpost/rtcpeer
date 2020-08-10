@@ -11,11 +11,9 @@ import { TypedEventTarget } from '../../util/typed-event-target';
 import { unexpectedError } from '../../util/unexpected-error';
 
 /**
- * @class RTCPeer
- *
  * A simple wrapper for RTCPeerConnection that implements perfect negotiation.
  *
- * @example
+ * ### Usage example
  *
  * ```javascript
  * const peer1 = new RTCPeer();
