@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samtheprogram/RTCSession.git"
+    "url": "git+https://github.com/paradigmpost/RTCSession.git"
   },
   "author": "Samuel Moore <sam@paradigmpost.com>",
   "license": "BSD-3-Clause",
