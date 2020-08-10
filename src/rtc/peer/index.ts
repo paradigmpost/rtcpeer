@@ -9,6 +9,33 @@ import { guidFromDescription } from '../../util/guid-from-description';
 import { TypedEventTarget } from '../../util/typed-event-target';
 import { unexpectedError } from '../../util/unexpected-error';
 
+/**
+ * @class RTCPeer
+ *
+ * A simple wrapper for RTCPeerConnection that implements perfect negotiation.
+ *
+ * @example
+ *
+ * ```javascript
+ * const peer1 = new RTCPeer();
+ * const peer2 = new RTCPeer();
+ *
+ * peer1.addEventListener('candidate', (c) => peer2.handleCandidate(c));
+ * peer2.addEventListener('candidate', (c) => peer1.handleCandidate(c));
+ * peer1.addEventListener('description', (d) => peer2.handleDescription(d));
+ * peer2.addEventListener('description', (d) => peer1.handleDescription(d));
+ *
+ * peer1.addEventListener('streams', (stream) => {
+ *   const video = document.createElement('video');
+ *   video.autoplay = true;
+ *   video.srcObject = stream;
+ *   document.body.appendChild(video);
+ * });
+ *
+ * const stream = await navigator.mediaDevices.getUserMedia({video: true});
+ * peer2.addTrack(stream.getTracks()[0], stream);
+ * ```
+ */
 export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> {
   private readonly connection: RTCPeerConnection;
   private offered = false;
