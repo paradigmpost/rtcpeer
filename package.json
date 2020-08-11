@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
+    "doc": "typedoc --includeDeclarations --exclude \"src/**/*.d.ts\" --readme README.md ./src",
     "lint": "npx eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +24,9 @@
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
     "eslint": "^7.6.0",
+    "typedoc": "^0.18.0",
+    "typedoc-plugin-internal-external": "^2.2.0",
+    "typedoc-plugin-no-inherit": "^1.1.10",
     "typescript": "^3.9.7"
   }
 }
