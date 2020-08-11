@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+dev-cameras() {
+  pushd examples/cameras
+    npm run dev:"${1:-http}"
+  popd
+}
+export -f dev-cameras
+
+watch-cameras() {
+  local USE_HTTPS="$1"
+
+  if [[ $USE_HTTPS == true ]]; then
+    # most dev servers don't auto-restart when ssl=true, use nodemon instead
+    npx nodemon -e ts,tsx -w examples/cameras/src/ --exec "dev-cameras https"
+  else
+    # preact will auto restart if ssl=false
+    dev-cameras
+  fi
+}
+export -f watch-cameras
+
+main() {
+  local USE_HTTPS=false
+  if [[ "${1:-http}" == https ]]; then
+    USE_HTTPS=true
+  fi
+
+  npx nodemon -e ts -w src/ --ignore "src/**/*.d.ts" --exec "npm run build && watch-cameras $USE_HTTPS"
+}
+
+main "$@"
