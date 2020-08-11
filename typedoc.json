@@ -1,10 +1,13 @@
 {
   "exclude": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "node_modules/**/!(lib.dom.d)*.ts"
   ],
   "includeDeclarations": true,
   "inputFiles": [
     "./src"
   ],
+  "mode": "modules",
+  "name": "RTCPeer",
   "readme": "README.md"
 }
