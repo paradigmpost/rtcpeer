@@ -16,6 +16,7 @@ export interface RTPMediaExtensions extends Pick<
   | 'removeTrack'
   | 'addTransceiver'
   | 'addEventListener'
+  | 'removeEventListener'
   | 'ontrack'
 > {}
 
