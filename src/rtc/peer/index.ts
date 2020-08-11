@@ -73,9 +73,7 @@ export class RTCPeer
   /**
    * Constructs a new RTCPeer and managed RTCPeerConnection.
    *
-   * Optionally, override whether the peer is "polite", i.e. if it would forget about its own offer and acknowlege an incoming offer when a connection negotiation collision occurs. By default, RTCPeer determines whether to be [polite in perfect negotiation collisions](WebRTC 1.0 Perfect Negotiation Example) by comparing its connection's session description (SDP) origin field (`o=`) against the other peer's offered SDP. To override this behavior, manually set whether the peer is polite via the parameter.
-   *
-   * [WebRTC 1.0 Perfect Negotiation Example]: https://w3c.github.io/webrtc-pc/#perfect-negotiation-example
+   * Optionally, override whether the peer is "polite", i.e. if it would forget about its own offer and acknowlege an incoming offer when a connection negotiation collision occurs. By default, RTCPeer determines whether to be [polite in perfect negotiation collisions](https://w3c.github.io/webrtc-pc/#perfect-negotiation-example) by comparing its connection's session description (SDP) origin field (`o=`) against the other peer's offered SDP. To override this behavior, manually set whether the peer is polite via the parameter.
    *
    * @param polite Use to override whether this peer is polite when a negotiation collision occurs. If either no value or `null` are provided, the peer automatically compares SDP origins to determine politeness.
    */
