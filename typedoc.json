@@ -1,0 +1,10 @@
+{
+  "exclude": [
+    "src/**/*.d.ts"
+  ],
+  "includeDeclarations": true,
+  "inputFiles": [
+    "./src"
+  ],
+  "readme": "README.md"
+}

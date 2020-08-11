@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
-    "doc": "typedoc --includeDeclarations --exclude \"src/**/*.d.ts\" --readme README.md ./src",
+    "doc": "typedoc",
     "lint": "npx eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
