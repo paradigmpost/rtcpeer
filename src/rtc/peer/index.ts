@@ -47,6 +47,24 @@ export class RTCPeer
     return this.connection.signalingState == 'stable';
   }
 
+  /**
+   * Indicates, via a [[RTCPeerCandidateEvent]], to send an ICE candidate to the associated peer, likely via a signaling server.
+   * @event EVENT_CANDIDATE
+   */
+  static readonly EVENT_CANDIDATE: keyof RTCPeerEventMap = 'candidate';
+
+  /**
+   * Indicates, via a [[RTCPeerDescriptionEvent]], to send a session description to the associated peer, likely via a signaling server.
+   * @event EVENT_DESCRIPTION
+   */
+  static readonly EVENT_DESCRIPTION: keyof RTCPeerEventMap = 'description';
+
+  /**
+   * Fires a [[RTCPeerStreamsEvent]] whenever the underlying connection fires a "track" event.
+   * @event EVENT_STREAMS
+   */
+  static readonly EVENT_STREAMS: keyof RTCPeerEventMap = 'streams';
+
   constructor(private polite: boolean | null = null) {
     super();
     this.connection = new RTCPeerConnection();
