@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "build": "preact build --no-prerender",
-    "dev": "preact watch --port 8080 --https --cert ./fullchain.pem --key ./privkey.pem",
+    "dev": "npm run dev:http",
+    "dev:http": "preact watch --port 8080",
+    "dev:https": "npm run dev:http -- --https --cert ./fullchain.pem --key ./privkey.pem",
     "test": "jest ./tests"
   },
   "dependencies": {
