@@ -4,7 +4,6 @@ export type RTCPeerEventMap = {
   streams: RTCPeerStreamsEvent;
 };
 
-
 /**
  * Contains a [[RTCIceCandidate]] forwarded from an [[RTCPeerConnection]] instance, to be sent to another [[RTCPeer]].
  *
