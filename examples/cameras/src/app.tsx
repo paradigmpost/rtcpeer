@@ -1,6 +1,6 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/compat";
-import { RTCPeerManager } from "../../../index.js";
+import { RTCPeerManager } from "../../../src/index.js";
 import { DeclarativeFrame, Video } from "./components";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
