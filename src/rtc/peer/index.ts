@@ -34,6 +34,11 @@ import { unexpectedError } from '../../util/unexpected-error';
  * const stream = await navigator.mediaDevices.getUserMedia({video: true});
  * peer2.addTrack(stream.getTracks()[0], stream);
  * ```
+ *
+ * ### Signaling server message handlers
+ * 
+ * When setting up a signaling server mechanism, messages from a corresponding (and likely remote) RTCPeer's `candidate` and `description` events should call these methods.
+ *
  */
 export class RTCPeer
   extends TypedEventTarget<RTCPeerEventMap> 
@@ -65,6 +70,15 @@ export class RTCPeer
    */
   static readonly EVENT_STREAMS: keyof RTCPeerEventMap = 'streams';
 
+  /**
+   * Constructs a new RTCPeer and managed RTCPeerConnection.
+   *
+   * Optionally, override whether the peer is "polite", i.e. if it would forget about its own offer and acknowlege an incoming offer when a connection negotiation collision occurs. By default, RTCPeer determines whether to be [polite in perfect negotiation collisions](WebRTC 1.0 Perfect Negotiation Example) by comparing its connection's session description (SDP) origin field (`o=`) against the other peer's offered SDP. To override this behavior, manually set whether the peer is polite via the parameter.
+   *
+   * [WebRTC 1.0 Perfect Negotiation Example]: https://w3c.github.io/webrtc-pc/#perfect-negotiation-example
+   *
+   * @param polite Use to override whether this peer is polite when a negotiation collision occurs. If either no value or `null` are provided, the peer automatically compares SDP origins to determine politeness.
+   */
   constructor(private polite: boolean | null = null) {
     super();
     this.connection = new RTCPeerConnection();
@@ -74,11 +88,13 @@ export class RTCPeer
   }
 
   /**
-   * Signaling server message handlers
+   * Handle a RTCIceCandidate from the associated RTCPeer, likely sent via a signaling server.
    *
-   * When setting up a signaling server mechanism, messages from the corresponding RTCPeer should call these methods.
+   * Unless the RTCPeer is ignoring incoming candidates due to a negotiation collision (in which case, any errors are caught instead of bubbling up), this method does nothing special beyond adding the candidate to the underlying connection.
+   *
+   * @category Signaling server message handlers
+   * @param candidate the candidate sent from the associated peer
    */
-
   async handleCandidate(candidate: RTCIceCandidate): Promise<void> {
     try {
       await this.connection.addIceCandidate(candidate);
@@ -87,6 +103,16 @@ export class RTCPeer
     }
   }
 
+  /**
+   * Handle a RTCSessionDescription, or SDP, from the associated peer, likely sent via a signaling server.
+   *
+   * This method determines whether or not to acknowlege or ignore the descriptions that are passed to it, thus the majority of the negotiation logic can be found here.
+   *
+   * If an "answer" is necessary, i.e. if the incoming description is of type `offer` and we are not ignoring the peer's offer due to a collision, a [[RTCPeerDescriptionEvent]] will be emitted as the Promise resolves, to be sent to the other peer.
+   *
+   * @category Signaling server message handlers
+   * @param description the session description (SDP) sent from the associated peer
+   */
   async handleDescription(description: RTCSessionDescription): Promise<void> {
     // determine if there's an offer collision and ignore/acknowledge appropriately
     if (this.isCollisionWithDescription(description)) {
