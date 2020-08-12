@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
-    "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
+    "clean": "find src | grep -E '\\.(js|js\\.map|d\\.ts)$' | xargs -I{} rm {}",
     "doc": "typedoc",
     "lint": "npx eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.json",
     "prepack": "npm run clean && npm run build",
