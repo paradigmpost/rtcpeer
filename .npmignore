@@ -31,5 +31,8 @@ node_modules/
 # vim files
 *.swp
 
+# Usage examples
+/examples/
+
 # Documentation output
 /docs/
