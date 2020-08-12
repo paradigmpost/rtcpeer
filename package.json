@@ -8,6 +8,7 @@
     "clean": "find src | grep -E '\\.(js|d\\.ts)$' | xargs -I{} rm {}",
     "doc": "typedoc",
     "lint": "npx eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.json",
+    "prepack": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-cameras": "bin/watch-cameras"
   },

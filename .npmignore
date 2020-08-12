@@ -31,13 +31,5 @@ node_modules/
 # vim files
 *.swp
 
-# TypeScript build output (gitignore only)
-*.js
-*.map
-*.d.ts
-src/**/*.js
-src/**/*.map
-src/**/*.d.ts
-
 # Documentation output
 /docs/
