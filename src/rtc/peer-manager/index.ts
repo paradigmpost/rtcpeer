@@ -6,13 +6,18 @@ import {
   RTCPeerEventMap,
 } from '../peer/events';
 import { RTCPeer } from '../peer/index';
-import { RTCPeerManagerEventMap } from './events';
+import { RTCPeerManagerEventMap, RTCPeerManagerStreamsEvent } from './events';
 
 export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
-
   private readonly peers: { [key: string]: RTCPeer | null } = {};
   private readonly disposables: { [key: string]: (() => void) | null } = {};
   private readonly streams: MediaStream[] = [];
+
+  /**
+   * Fires a [[RTCPeerManagerStreamsEvent]] whenever the underlying connection fires a "track" event.
+   * @event EVENT_STREAMS
+   */
+  static readonly EVENT_STREAMS: keyof RTCPeerManagerEventMap = 'streams';
 
   constructor(public readonly id: string) {
     super();
@@ -46,20 +51,23 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
       throw unexpectedError('peer is already managed');
     }
 
-    const passthrough = <T extends RTCPeerEventMap[keyof RTCPeerEventMap] | Event>(ev: T) => {
-      console.log('passthrough:', ev);
-      this.dispatchEvent(new IdentifiableEvent(id, ev));
+    const passthrough = <T extends RTCPeerEventMap[keyof RTCPeerEventMap] | RTCTrackEvent | Event>(ev: T) => {
+      if (this.isTrackEvent(ev)) {
+        this.dispatchEvent(new IdentifiableEvent(id, new RTCPeerManagerStreamsEvent(ev.streams)));
+      } else {
+        this.dispatchEvent(new IdentifiableEvent(id, ev));
+      }
     };
     const peer = new RTCPeer();
     peer.addEventListener('candidate', passthrough);
     peer.addEventListener('description', passthrough);
-    peer.addEventListener('streams', passthrough);
+    peer.media.addEventListener('track', passthrough);
 
     this.peers[id] = peer;
     this.disposables[id] = () => {
       peer.removeEventListener('candidate', passthrough);
       peer.removeEventListener('description', passthrough);
-      peer.removeEventListener('streams', passthrough);
+      peer.media.removeEventListener('track', passthrough);
     };
 
     // send the peer any streams that are already getting transmitted, if any
@@ -68,6 +76,10 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
 
   private hasPeer(id: string): boolean {
     return !!this.peers[id];
+  }
+
+  private isTrackEvent(ev: Event): ev is RTCTrackEvent {
+    return Object.getPrototypeOf(ev).constructor === RTCTrackEvent
   }
 
   removePeer(id: string): void {
@@ -86,7 +98,7 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
   }
 
   private addStreamForPeer(stream: MediaStream, peer: RTCPeer) {
-    stream.getTracks().forEach((track) => peer.addTrack(track, stream));
+    stream.getTracks().forEach((track) => peer.media.addTrack(track, stream));
   }
 
   hasStream(stream: MediaStream): boolean {
