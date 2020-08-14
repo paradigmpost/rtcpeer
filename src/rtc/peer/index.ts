@@ -2,7 +2,6 @@ import {
   RTCPeerCandidateEvent,
   RTCPeerDescriptionEvent,
   RTCPeerEventMap,
-  RTCPeerStreamsEvent
 } from "./events";
 import { RTPMediaExtensions } from './interfaces';
 
@@ -24,7 +23,7 @@ import { unexpectedError } from '../../util/unexpected-error';
  * peer1.addEventListener('description', (d) => peer2.handleDescription(d));
  * peer2.addEventListener('description', (d) => peer1.handleDescription(d));
  *
- * peer1.addEventListener('streams', (stream) => {
+ * peer1.media.addEventListener('track', ({ streams: [stream] }) => {
  *   const video = document.createElement('video');
  *   video.autoplay = true;
  *   video.srcObject = stream;
@@ -32,7 +31,7 @@ import { unexpectedError } from '../../util/unexpected-error';
  * });
  *
  * const stream = await navigator.mediaDevices.getUserMedia({video: true});
- * peer2.addTrack(stream.getTracks()[0], stream);
+ * peer2.media.addTrack(stream.getTracks()[0], stream);
  * ```
  *
  * ### Signaling server message handlers
@@ -40,9 +39,7 @@ import { unexpectedError } from '../../util/unexpected-error';
  * When setting up a signaling server mechanism, messages from a corresponding (and likely remote) RTCPeer's `candidate` and `description` events should call these methods.
  *
  */
-export class RTCPeer
-  extends TypedEventTarget<RTCPeerEventMap> 
-  implements RTPMediaExtensions
+export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> 
 {
   private readonly connection: RTCPeerConnection;
   private offered = false;
@@ -51,6 +48,11 @@ export class RTCPeer
   private get stable() {
     return this.connection.signalingState == 'stable';
   }
+
+  /**
+   * Manage media getting sent through the RTCPeer via the RTP Media API.
+   */
+  get media(): RTPMediaExtensions { return this.connection; }
 
   /**
    * Indicates, via a [[RTCPeerCandidateEvent]], to send an ICE candidate to the associated peer, likely via a signaling server.
@@ -65,12 +67,6 @@ export class RTCPeer
   static readonly EVENT_DESCRIPTION: keyof RTCPeerEventMap = 'description';
 
   /**
-   * Fires a [[RTCPeerStreamsEvent]] whenever the underlying connection fires a "track" event.
-   * @event EVENT_STREAMS
-   */
-  static readonly EVENT_STREAMS: keyof RTCPeerEventMap = 'streams';
-
-  /**
    * Constructs a new RTCPeer and managed RTCPeerConnection.
    *
    * Optionally, override whether the peer is "polite", i.e. if it would forget about its own offer and acknowlege an incoming offer when a connection negotiation collision occurs. By default, RTCPeer determines whether to be [polite in perfect negotiation collisions](https://w3c.github.io/webrtc-pc/#perfect-negotiation-example) by comparing its connection's session description (SDP) origin field (`o=`) against the other peer's offered SDP. To override this behavior, manually set whether the peer is polite via the parameter.
@@ -80,7 +76,6 @@ export class RTCPeer
   constructor(private polite: boolean | null = null) {
     super();
     this.connection = new RTCPeerConnection();
-    this.connection.addEventListener('track', (ev) => this.onTrack(ev));
     this.connection.addEventListener('icecandidate', (ev) => this.onIceCandidate(ev));
     this.connection.addEventListener('negotiationneeded', (ev) => this.onNegotiationNeeded(ev));
   }
@@ -184,38 +179,5 @@ export class RTCPeer
     } finally {
       this.offered = false;
     }
-  }
-
-  private onTrack(ev: RTCTrackEvent) {
-    const { streams } = ev;
-    this.dispatchEvent(new RTCPeerStreamsEvent(streams));
-  }
-
-  /**
-   * RTPMediaExtensions
-   */
-
-  getSenders(): RTCRtpSender[] { return this.connection.getSenders(); }
-  getReceivers(): RTCRtpReceiver[] { return this.connection.getReceivers(); }
-  getTransceivers(): RTCRtpTransceiver[] { return this.connection.getTransceivers(); }
-
-  addTrack(track: MediaStreamTrack, ...streams: MediaStream[]): RTCRtpSender {
-    return this.connection.addTrack(track, ...streams);
-  }
-
-  removeTrack(sender: RTCRtpSender): void { this.connection.removeTrack(sender); }
-  
-  addTransceiver(
-    trackOrKind: MediaStreamTrack | string,
-    init?: RTCRtpTransceiverInit
-  ): RTCRtpTransceiver {
-    return this.connection.addTransceiver(trackOrKind, init);
-  }
-
-  get ontrack(): ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null {
-    throw new Error('DOM 0 style events are not supported. Use addEventListener instead.');
-  }
-  set ontrack(_: ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null) {
-    throw new Error('DOM 0 style events are not supported. Use addEventListener instead.');
   }
 }
