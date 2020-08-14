@@ -4,19 +4,12 @@ type RTPMediaExtensionsEventMap = {
   track: RTCTrackEvent
 };
 
-interface RTPMediaExtensionsEventTarget extends TypedEventTarget<RTPMediaExtensionsEventMap> {
+export interface RTPMediaExtensions extends TypedEventTarget<RTPMediaExtensionsEventMap> {
+    getReceivers(): RTCRtpReceiver[];
+    getSenders(): RTCRtpSender[];
+    getTransceivers(): RTCRtpTransceiver[];
+    addTrack(track: MediaStreamTrack, ...streams: MediaStream[]): RTCRtpSender;
+    removeTrack(sender: RTCRtpSender): void;
+    ontrack: ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null;
 }
-
-export interface RTPMediaExtensions extends Pick<
-  RTCPeerConnection & RTPMediaExtensionsEventTarget,
-  | 'getSenders'
-  | 'getReceivers'
-  | 'getTransceivers'
-  | 'addTrack'
-  | 'removeTrack'
-  | 'addTransceiver'
-  | 'addEventListener'
-  | 'removeEventListener'
-  | 'ontrack'
-> {}
 
