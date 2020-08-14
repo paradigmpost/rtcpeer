@@ -48,10 +48,6 @@ const CameraPeer: FunctionalComponent<{
     const [recvStreams, setRecvStreams] = useState<{ [key: string]: MediaStream | null }>({});
     const [sendStream, setSendStream] = useState<MediaStream | null>(null);
 
-    // if (Object.keys(recvStreams).length > 0) {
-    //     console.log("we have a recvStream!!:", recvStreams);
-    // }
-
     useEffect(() => {
         setPeerManager(new RTCPeerManager(_id));
     }, []);
