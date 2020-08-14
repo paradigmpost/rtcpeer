@@ -5,7 +5,7 @@ A wrapper for RTCPeerConnection that implements perfect negotiation.
 ## Installation
 
 ```
-$ npm install https://github.com/paradigmpost/rtcpeer.git
+$ npm install rtcpeer
 ```
 
 ## License

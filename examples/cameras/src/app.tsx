@@ -1,6 +1,6 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/compat";
-import { RTCPeerManager } from "../../../src/index.js";
+import { RTCPeerManager } from "rtcpeer";
 import { DeclarativeFrame, Video } from "./components";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,10 +47,6 @@ const CameraPeer: FunctionalComponent<{
     const [peerManager, setPeerManager] = useState<RTCPeerManager | null>(null);
     const [recvStreams, setRecvStreams] = useState<{ [key: string]: MediaStream | null }>({});
     const [sendStream, setSendStream] = useState<MediaStream | null>(null);
-
-    // if (Object.keys(recvStreams).length > 0) {
-    //     console.log("we have a recvStream!!:", recvStreams);
-    // }
 
     useEffect(() => {
         setPeerManager(new RTCPeerManager(_id));
