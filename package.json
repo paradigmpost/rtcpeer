@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paradigmpost/RTCSession.git"
+    "url": "git+https://github.com/paradigmpost/rtcpeer.git"
   },
   "author": "Samuel Moore <sam@paradigmpost.com>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/samtheprogram/RTCSession/issues"
+    "url": "https://github.com/paradigmpost/rtcpeer/issues"
   },
-  "homepage": "https://github.com/samtheprogram/RTCSession#readme",
+  "homepage": "https://github.com/paradigmpost/rtcpeer#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
