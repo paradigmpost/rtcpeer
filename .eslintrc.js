@@ -2,18 +2,18 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
   ],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn', {
       'vars': 'local',
       'args': 'after-used',
       'ignoreRestSiblings': false,
-      'argsIgnorePattern': '^_'
+      'argsIgnorePattern': '^_',
     }],
     // must expand out comma-dangle to get `functions` option enabled
     'comma-dangle': ['error', {
@@ -35,7 +35,7 @@ module.exports = {
       'vars': 'local',
       'args': 'after-used',
       'ignoreRestSiblings': false,
-      'argsIgnorePattern': '^_'
+      'argsIgnorePattern': '^_',
     }],
     'semi':[2, 'always'],
     'spaced-comment': ['error', 'always'],
