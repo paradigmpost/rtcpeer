@@ -2,7 +2,7 @@ import {
   RTCPeerCandidateEvent,
   RTCPeerDescriptionEvent,
   RTCPeerEventMap,
-} from "./events";
+} from './events';
 import { RTPMediaExtensions } from './interfaces';
 
 import { guidFromDescription } from '../../util/guid-from-description';
@@ -46,22 +46,13 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
   private ignored = false;
 
   private get stable() {
-
-
-
-
-
-
-
-
-
-    return       this.connection.signalingState == 'stable'
+    return this.connection.signalingState == 'stable';
   }
 
   /**
    * Manage media getting sent through the RTCPeer via the RTP Media API.
    */
-  get media(): RTPMediaExtensions { return this.connection;         }
+  get media(): RTPMediaExtensions { return this.connection; }
 
   /**
    * Indicates, via a [[RTCPeerCandidateEvent]], to send an ICE candidate to the associated peer, likely via a signaling server.
@@ -125,7 +116,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
         // we have to let the connection know of the new description & rollback our offer simultaneously
         await Promise.all([
           this.connection.setLocalDescription({ type: 'rollback' }),
-          this.connection.setRemoteDescription(description)
+          this.connection.setRemoteDescription(description),
         ]);
       }
     } else {
@@ -141,7 +132,9 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
     await this.connection.setLocalDescription(await this.connection.createAnswer());
     const responseDescription = this.connection.localDescription;
 
-    if (responseDescription === null) throw unexpectedError('responseDescription should not be null');
+    if (responseDescription === null) {
+      throw unexpectedError('responseDescription should not be null');
+    }
 
     this.dispatchEvent(new RTCPeerDescriptionEvent(responseDescription));
   }

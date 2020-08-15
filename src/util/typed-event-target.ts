@@ -32,13 +32,14 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
   >(
     type: K | string,
     listener: (ev: E) => void | EventListenerOrEventListenerObject | null,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void {
     super.addEventListener(
       type,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error 2352
       listener as EventListenerOrEventListenerObject,
-      options
+      options,
     );
   }
 
@@ -63,13 +64,14 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
   >(
     type: K | string,
     listener: (ev: E) => void | EventListenerOrEventListenerObject | null,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void {
     super.removeEventListener(
       type,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error 2352
       listener as EventListenerOrEventListenerObject,
-      options
+      options,
     );
-  };
+  }
 }

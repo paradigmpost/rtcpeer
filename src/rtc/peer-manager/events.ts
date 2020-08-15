@@ -20,7 +20,7 @@ export type RTCPeerManagerEventMap = {
  */
 export class RTCPeerManagerStreamsEvent extends Event {
   constructor(public streams: ReadonlyArray<MediaStream>) {
-    super("streams");
+    super('streams');
   }
 }
 
