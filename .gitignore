@@ -41,3 +41,7 @@ src/**/*.d.ts
 
 # Documentation output
 /docs/
+
+
+# Include eslint config
+!.eslintrc.js
