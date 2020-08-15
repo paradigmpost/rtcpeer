@@ -9,9 +9,9 @@ import { RTCPeer } from '../peer/index';
 import { RTCPeerManagerEventMap, RTCPeerManagerStreamsEvent } from './events';
 
 /**
- * Provides mechanisms for managing a sending and receiving with multiple, probably remote, RTCPeer objects.
+ * Provides mechanisms for sending and receiving streams with multiple, probably remote, RTCPeer objects.
  *
- * The goal of RTCPeerManager is to make it easy to managing sending the same content to many RTCPeer's at once. Currently, only addTrack (via [[addStream]]) is managed. Regardless of whether you call addPeer before or after you call addStream, all peers should received the content sent via addStream once connected.
+ * The goal of RTCPeerManager is to make it easy to send the same content to many RTCPeer's at once, possibly while also receiving contents from those peers. Currently, only addTrack (via [[addStream]]) is managed. Regardless of whether you call [[addPeer]] before or after you call [[addStream]], all peers should receive the content sent via addStream once they are connected.
  *
  * ### Signaling server message handlers
  *
