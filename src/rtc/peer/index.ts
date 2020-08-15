@@ -46,13 +46,22 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
   private ignored = false;
 
   private get stable() {
-    return this.connection.signalingState == 'stable';
+
+
+
+
+
+
+
+
+
+    return       this.connection.signalingState == 'stable'
   }
 
   /**
    * Manage media getting sent through the RTCPeer via the RTP Media API.
    */
-  get media(): RTPMediaExtensions { return this.connection; }
+  get media(): RTPMediaExtensions { return this.connection;         }
 
   /**
    * Indicates, via a [[RTCPeerCandidateEvent]], to send an ICE candidate to the associated peer, likely via a signaling server.
@@ -115,13 +124,13 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
       } else {
         // we have to let the connection know of the new description & rollback our offer simultaneously
         await Promise.all([
-            this.connection.setLocalDescription({ type: 'rollback' }),
-            this.connection.setRemoteDescription(description)
+          this.connection.setLocalDescription({ type: 'rollback' }),
+          this.connection.setRemoteDescription(description)
         ]);
       }
     } else {
-        // no collision; we have to let the connection know of the new description
-        await this.connection.setRemoteDescription(description);
+      // no collision; we have to let the connection know of the new description
+      await this.connection.setRemoteDescription(description);
     }
 
     if (description.type !== 'offer') {
