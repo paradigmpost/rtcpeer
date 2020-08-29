@@ -1,6 +1,6 @@
 export function guidFromDescription(description: RTCSessionDescription): string {
   return description.sdp
-    .split("\n")
+    .split('\n')
     .filter(str => str.match(/^o=/))
     .pop()!
     .replace(/^o=/, '');

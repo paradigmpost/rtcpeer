@@ -10,7 +10,7 @@ export type RTCPeerEventMap = {
  */
 export class RTCPeerCandidateEvent extends Event {
   constructor(public candidate: RTCIceCandidate | null) {
-    super("candidate");
+    super('candidate');
   }
 }
 
@@ -21,7 +21,7 @@ export class RTCPeerCandidateEvent extends Event {
  */
 export class RTCPeerDescriptionEvent extends Event {
   constructor(public description: RTCSessionDescription) {
-    super("description");
+    super('description');
   }
 }
 

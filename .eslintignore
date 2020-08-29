@@ -12,3 +12,5 @@ src/**/*.js
 src/**/*.map
 src/**/*.d.ts
 
+# Include eslint config
+!.eslintrc.js

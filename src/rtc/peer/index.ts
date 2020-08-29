@@ -2,7 +2,7 @@ import {
   RTCPeerCandidateEvent,
   RTCPeerDescriptionEvent,
   RTCPeerEventMap,
-} from "./events";
+} from './events';
 import { RTPMediaExtensions } from './interfaces';
 
 import { guidFromDescription } from '../../util/guid-from-description';
@@ -115,13 +115,13 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
       } else {
         // we have to let the connection know of the new description & rollback our offer simultaneously
         await Promise.all([
-            this.connection.setLocalDescription({ type: 'rollback' }),
-            this.connection.setRemoteDescription(description)
+          this.connection.setLocalDescription({ type: 'rollback' }),
+          this.connection.setRemoteDescription(description),
         ]);
       }
     } else {
-        // no collision; we have to let the connection know of the new description
-        await this.connection.setRemoteDescription(description);
+      // no collision; we have to let the connection know of the new description
+      await this.connection.setRemoteDescription(description);
     }
 
     if (description.type !== 'offer') {
@@ -132,7 +132,9 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
     await this.connection.setLocalDescription(await this.connection.createAnswer());
     const responseDescription = this.connection.localDescription;
 
-    if (responseDescription === null) throw unexpectedError('responseDescription should not be null');
+    if (responseDescription === null) {
+      throw unexpectedError('responseDescription should not be null');
+    }
 
     this.dispatchEvent(new RTCPeerDescriptionEvent(responseDescription));
   }

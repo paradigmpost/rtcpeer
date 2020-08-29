@@ -73,7 +73,8 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
       throw unexpectedError('peer is already managed');
     }
 
-    const passthrough = <T extends RTCPeerEventMap[keyof RTCPeerEventMap] | RTCTrackEvent | Event>(ev: T) => {
+    const passthrough = 
+    <T extends RTCPeerEventMap[keyof RTCPeerEventMap] | RTCTrackEvent | Event>(ev: T) => {
       if (this.isTrackEvent(ev)) {
         this.dispatchEvent(new IdentifiableEvent(id, new RTCPeerManagerStreamsEvent(ev.streams)));
       } else {
@@ -101,7 +102,7 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
   }
 
   private isTrackEvent(ev: Event): ev is RTCTrackEvent {
-    return Object.getPrototypeOf(ev).constructor === RTCTrackEvent
+    return Object.getPrototypeOf(ev).constructor === RTCTrackEvent;
   }
 
   /**

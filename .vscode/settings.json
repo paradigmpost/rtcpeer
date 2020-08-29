@@ -1,0 +1,11 @@
+{
+  "eslint.format.enable": true,
+  "editor.formatOnSave": false,
+  "editor.rulers": [
+      100
+  ],
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+}
