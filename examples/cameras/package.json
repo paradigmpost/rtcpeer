@@ -27,6 +27,7 @@
     "jest": "^26.2.2",
     "jest-preset-preact": "^4.0.2",
     "preact-cli": "^3.0.0",
+    "regenerator-runtime": "^0.13.7",
     "typescript": "^3.7.5"
   }
 }

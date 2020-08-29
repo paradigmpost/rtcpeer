@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime";
 import { h } from "preact";
 // See: https://github.com/preactjs/enzyme-adapter-preact-pure
 import { shallow } from "enzyme";
