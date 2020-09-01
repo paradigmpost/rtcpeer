@@ -24,4 +24,4 @@ jobs:
     - name: Configuring ssh
       run: echo "${{ secrets.DEPLOY_KEY }}" > ~/deploy_key && chmod 600 ~/deploy_key
     - name: Building docs and deploying
-      run: GIT_SSH_COMMAND='ssh -i ~/deploy_key' ./deploy.sh
+      run: GIT_SSH_COMMAND='ssh -i ~/deploy_key' ./bin/deploy-docs
