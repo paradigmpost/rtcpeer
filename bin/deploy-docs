@@ -2,7 +2,7 @@
 set -e
 
 HEAD=$(git rev-parse --short HEAD)
-REMOTE=$(git remote get-url origin)
+REMOTE=$(cat package.json | ruby -r json -e 'puts JSON.parse(ARGF.read)["repository"]["url"]')
 VERSION=$(cat package.json | ruby -r json -e 'puts JSON.parse(ARGF.read)["version"]')
 
 npm run doc
