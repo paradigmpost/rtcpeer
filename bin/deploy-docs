@@ -9,6 +9,7 @@ npm run doc
 
 pushd docs/
 	echo 'rtcpeer.com' > CNAME
+	touch .nojekyll
 
 	git init .
 	git add .
