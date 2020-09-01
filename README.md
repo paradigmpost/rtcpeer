@@ -20,7 +20,7 @@ $ npm install rtcpeer
 
 ## Should I use this?
 
-Probably :doughnut:.
+Probably not:
 
 - RTCPeer's public API is subject to change to improve readability and support more WebRTC use-cases
 - RTCPeer is not battle-tested

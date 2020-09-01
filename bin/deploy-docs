@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+HEAD=$(git rev-parse --short HEAD)
+REMOTE=$(git remote get-url origin)
+VERSION=$(cat package.json | ruby -r json -e 'puts JSON.parse(ARGF.read)["version"]')
+
+npm run doc
+
+pushd docs/
+	echo 'rtcpeer.com' > CNAME
+
+	git init .
+	git add .
+	git commit -m "deploy: docs: $VERSION / $HEAD"
+	git push -f "$REMOTE" master:gh-pages
+popd
