@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/paradigmpost/rtcpeer/issues"
   },
-  "homepage": "https://github.com/paradigmpost/rtcpeer#readme",
+  "homepage": "https://rtcpeer.com",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
