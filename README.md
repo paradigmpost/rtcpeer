@@ -1,16 +1,19 @@
 # RTCPeer
 
-`RTCPeer` is thin wrapper for RTCPeerConnection that implements perfect negotiation; just provide
-event listeners that act as a communication channel to other (likely remote) peers, and RTCPeer
-takes care of the negotiation logic that allows them to establish a peer-to-peer connection.
+[`RTCPeer`][] is thin wrapper for RTCPeerConnection that implements perfect negotiation; just
+provide event listeners that act as a communication channel to other (likely remote) peers, and
+RTCPeer takes care of the negotiation logic that allows them to establish a peer-to-peer connection.
 
-`RTCPeerManager`, another small abstraction, manages a collection of peers, simplifying sending
+[`RTCPeerManager`][], another small abstraction, manages a collection of peers, simplifying sending
 and receiving media between many users, regardless of whether the peer joined first or media was
 "shared" before there were any peers listening.
 
 The package is tiny (4kb of gzipped JavaScript), built on top of the WebRTC 1.0 specification and
 other modern DOM and JavaScript features. Support for older browsers is explicitly a non-goal;
 similarly, maintaining a light-weight abstraction over the modern specification is a primary goal.
+
+[`RTCPeer`]: //rtcpeer.com/classes/_src_rtc_peer_index_.rtcpeer.html
+[`RTCPeerManager`]: //rtcpeer.com/classes/_src_rtc_peer_manager_index_.rtcpeermanager.html
 
 ## Installation
 
