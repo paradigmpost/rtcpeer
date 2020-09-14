@@ -1,7 +1,7 @@
-export function guidFromDescription(description: RTCSessionDescription): string {
+export function guidFromDescription( description: RTCSessionDescription ): string {
   return description.sdp
-    .split('\n')
-    .filter((str) => str.match(/^o=/))
+    .split( '\n' )
+    .filter( ( str ) => str.match( /^o=/ ) )
     .pop()!
-    .replace(/^o=/, '');
+    .replace( /^o=/, '' );
 }

@@ -9,8 +9,8 @@ export type RTCPeerEventMap = {
  * @noInheritDoc
  */
 export class RTCPeerCandidateEvent extends Event {
-  constructor(public candidate: RTCIceCandidate | null) {
-    super('candidate');
+  constructor( public candidate: RTCIceCandidate | null ) {
+    super( 'candidate' );
   }
 }
 
@@ -20,8 +20,7 @@ export class RTCPeerCandidateEvent extends Event {
  * @noInheritDoc
  */
 export class RTCPeerDescriptionEvent extends Event {
-  constructor(public description: RTCSessionDescription) {
-    super('description');
+  constructor( public description: RTCSessionDescription ) {
+    super( 'description' );
   }
 }
-
