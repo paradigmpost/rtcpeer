@@ -1,10 +1,4 @@
 module.exports = {
-  root: true,
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-    'import',
-  ],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -12,6 +6,12 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
   ],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+    'import',
+  ],
+  root: true,
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn', {
       'vars': 'local',
