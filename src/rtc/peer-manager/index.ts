@@ -124,7 +124,7 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
    * @param stream A MediaStream that will be shared to current and future peers
    */
   addStream(stream: MediaStream) {
-    Object.keys(this.peers).map(k => this.peers[k]!).forEach((peer) => {
+    Object.keys(this.peers).map((k) => this.peers[k]!).forEach((peer) => {
       this.addStreamForPeer(stream, peer);
     });
     this.streams.push(stream);
