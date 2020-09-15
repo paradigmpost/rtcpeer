@@ -16,7 +16,7 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
     E extends EventMap[K]
   >(
     type: K,
-    listener: ( ev: E ) => void,
+    listener: (ev: E) => void,
     options?: boolean | AddEventListenerOptions
   ): void
 
@@ -31,7 +31,7 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
     E extends EventMap[K]
   >(
     type: K | string,
-    listener: ( ev: E ) => void | EventListenerOrEventListenerObject | null,
+    listener: (ev: E) => void | EventListenerOrEventListenerObject | null,
     options?: boolean | AddEventListenerOptions,
   ): void {
     super.addEventListener(
@@ -48,7 +48,7 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
     E extends EventMap[K]
   >(
     type: K,
-    listener: ( ev: E ) => void,
+    listener: (ev: E) => void,
     options?: boolean | EventListenerOptions
   ): void
 
@@ -63,7 +63,7 @@ export class TypedEventTarget<T extends AnyEventMap, EventMap = SomeEventMap<T>>
     E extends EventMap[K]
   >(
     type: K | string,
-    listener: ( ev: E ) => void | EventListenerOrEventListenerObject | null,
+    listener: (ev: E) => void | EventListenerOrEventListenerObject | null,
     options?: boolean | EventListenerOptions,
   ): void {
     super.removeEventListener(

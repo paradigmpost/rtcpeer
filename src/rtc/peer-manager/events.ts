@@ -19,7 +19,7 @@ export type RTCPeerManagerEventMap = {
  * @noInheritDoc
  */
 export class RTCPeerManagerStreamsEvent extends Event {
-  constructor( public streams: ReadonlyArray<MediaStream> ) {
-    super( 'streams' );
+  constructor(public streams: ReadonlyArray<MediaStream>) {
+    super('streams');
   }
 }

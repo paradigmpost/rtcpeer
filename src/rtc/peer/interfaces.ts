@@ -8,7 +8,7 @@ export interface RTPMediaExtensions extends TypedEventTarget<RTPMediaExtensionsE
     getReceivers(): RTCRtpReceiver[];
     getSenders(): RTCRtpSender[];
     getTransceivers(): RTCRtpTransceiver[];
-    addTrack( track: MediaStreamTrack, ...streams: MediaStream[] ): RTCRtpSender;
-    removeTrack( sender: RTCRtpSender ): void;
-    ontrack: ( ( this: RTCPeerConnection, ev: RTCTrackEvent ) => any ) | null;
+    addTrack(track: MediaStreamTrack, ...streams: MediaStream[]): RTCRtpSender;
+    removeTrack(sender: RTCRtpSender): void;
+    ontrack: ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null;
 }

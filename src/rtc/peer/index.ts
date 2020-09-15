@@ -73,11 +73,11 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
    *
    * @param polite Use to override whether this peer is polite when a negotiation collision occurs. If either no value or `null` are provided, the peer automatically compares SDP origins to determine politeness.
    */
-  constructor( private polite: boolean | null = null ) {
+  constructor(private polite: boolean | null = null) {
     super();
     this.connection = new RTCPeerConnection();
-    this.connection.addEventListener( 'icecandidate', ( ev ) => this.onIceCandidate( ev ) );
-    this.connection.addEventListener( 'negotiationneeded', ( ev ) => this.onNegotiationNeeded( ev ) );
+    this.connection.addEventListener('icecandidate', (ev) => this.onIceCandidate(ev));
+    this.connection.addEventListener('negotiationneeded', (ev) => this.onNegotiationNeeded(ev));
   }
 
   /**
@@ -88,11 +88,11 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
    * @category Signaling server message handlers
    * @param candidate the candidate sent from the associated peer
    */
-  async handleCandidate( candidate: RTCIceCandidate ): Promise<void> {
+  async handleCandidate(candidate: RTCIceCandidate): Promise<void> {
     try {
-      await this.connection.addIceCandidate( candidate );
-    } catch ( err ) {
-      if ( !this.ignored ) throw err;
+      await this.connection.addIceCandidate(candidate);
+    } catch (err) {
+      if (!this.ignored) throw err;
     }
   }
 
@@ -106,49 +106,49 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
    * @category Signaling server message handlers
    * @param description the session description (SDP) sent from the associated peer
    */
-  async handleDescription( description: RTCSessionDescription ): Promise<void> {
+  async handleDescription(description: RTCSessionDescription): Promise<void> {
     // determine if there's an offer collision and ignore/acknowledge appropriately
-    if ( this.isCollisionWithDescription( description ) ) {
-      if ( !this.isPoliteWithDescription( description ) ) {
+    if (this.isCollisionWithDescription(description)) {
+      if (!this.isPoliteWithDescription(description)) {
         this.ignored = true;
         return;
       } else {
         // we have to let the connection know of the new description & rollback our offer simultaneously
-        await Promise.all( [
+        await Promise.all([
           this.connection.setLocalDescription({ type: 'rollback' }),
-          this.connection.setRemoteDescription( description ),
-        ] );
+          this.connection.setRemoteDescription(description),
+        ]);
       }
     } else {
       // no collision; we have to let the connection know of the new description
-      await this.connection.setRemoteDescription( description );
+      await this.connection.setRemoteDescription(description);
     }
 
-    if ( description.type !== 'offer' ) {
+    if (description.type !== 'offer') {
       return;
     }
 
     // now that the connection knows the remote description, we can update the local description based on createAnswer
-    await this.connection.setLocalDescription( await this.connection.createAnswer() );
+    await this.connection.setLocalDescription(await this.connection.createAnswer());
     const responseDescription = this.connection.localDescription;
 
-    if ( responseDescription === null ) {
-      throw unexpectedError( 'responseDescription should not be null' );
+    if (responseDescription === null) {
+      throw unexpectedError('responseDescription should not be null');
     }
 
-    this.dispatchEvent( new RTCPeerDescriptionEvent( responseDescription ) );
+    this.dispatchEvent(new RTCPeerDescriptionEvent(responseDescription));
   }
 
-  private isCollisionWithDescription( description: RTCSessionDescription ) {
-    return description.type == 'offer' && ( this.offered || !this.stable );
+  private isCollisionWithDescription(description: RTCSessionDescription) {
+    return description.type == 'offer' && (this.offered || !this.stable);
   }
 
-  private isPoliteWithDescription( description: RTCSessionDescription ) {
-    if ( this.polite !== null ) return this.polite;
-    if ( this.connection.localDescription == null ) return true;
+  private isPoliteWithDescription(description: RTCSessionDescription) {
+    if (this.polite !== null) return this.polite;
+    if (this.connection.localDescription == null) return true;
 
-    const localGuid = guidFromDescription( this.connection.localDescription );
-    const remoteGuid = guidFromDescription( description );
+    const localGuid = guidFromDescription(this.connection.localDescription);
+    const remoteGuid = guidFromDescription(description);
 
     return localGuid == null || remoteGuid == null || localGuid > remoteGuid;
   }
@@ -157,12 +157,12 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
    * RTCPeerConnection Event Handlers
    */
 
-  private onIceCandidate( ev: RTCPeerConnectionIceEvent ) {
+  private onIceCandidate(ev: RTCPeerConnectionIceEvent) {
     const { candidate } = ev;
-    this.dispatchEvent( new RTCPeerCandidateEvent( candidate ) );
+    this.dispatchEvent(new RTCPeerCandidateEvent(candidate));
   }
 
-  private async onNegotiationNeeded( _: Event ) {
+  private async onNegotiationNeeded(_: Event) {
     this.offered = true;
 
     // in case we return early or an exception is thrown, `offered` still needs to be reset
@@ -170,14 +170,14 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
       const offer = await this.connection.createOffer();
 
       // if we are raced by the other peer such that at this point, we are e.g. 'have-*-offer'
-      if ( !this.stable ) return;
+      if (!this.stable) return;
 
-      await this.connection.setLocalDescription( offer );
+      await this.connection.setLocalDescription(offer);
 
       const description = this.connection.localDescription;
-      if ( description === null ) throw unexpectedError( 'description should not be null' );
+      if (description === null) throw unexpectedError('description should not be null');
 
-      this.dispatchEvent( new RTCPeerDescriptionEvent( description ) );
+      this.dispatchEvent(new RTCPeerDescriptionEvent(description));
     } finally {
       this.offered = false;
     }
