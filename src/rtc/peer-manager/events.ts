@@ -23,4 +23,3 @@ export class RTCPeerManagerStreamsEvent extends Event {
     super('streams');
   }
 }
-

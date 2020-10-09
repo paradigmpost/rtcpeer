@@ -2,9 +2,7 @@ import { IdentifiableEvent } from '../../util/identifiable-event';
 import { TypedEventTarget } from '../../util/typed-event-target';
 import { unexpectedError } from '../../util/unexpected-error';
 
-import {
-  RTCPeerEventMap,
-} from '../peer/events';
+import { RTCPeerEventMap } from '../peer/events';
 import { RTCPeer } from '../peer/index';
 import { RTCPeerManagerEventMap, RTCPeerManagerStreamsEvent } from './events';
 
@@ -73,7 +71,7 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
       throw unexpectedError('peer is already managed');
     }
 
-    const passthrough = 
+    const passthrough =
     <T extends RTCPeerEventMap[keyof RTCPeerEventMap] | RTCTrackEvent | Event>(ev: T) => {
       if (this.isTrackEvent(ev)) {
         this.dispatchEvent(new IdentifiableEvent(id, new RTCPeerManagerStreamsEvent(ev.streams)));
@@ -124,7 +122,7 @@ export class RTCPeerManager extends TypedEventTarget<RTCPeerManagerEventMap> {
    * @param stream A MediaStream that will be shared to current and future peers
    */
   addStream(stream: MediaStream) {
-    Object.keys(this.peers).map(k => this.peers[k]!).forEach((peer) => {
+    Object.keys(this.peers).map((k) => this.peers[k]!).forEach((peer) => {
       this.addStreamForPeer(stream, peer);
     });
     this.streams.push(stream);
