@@ -41,6 +41,6 @@
     }
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --fix"
+    "*.{js,ts}": "eslint . --ext .ts --ignore-pattern examples/ -c .eslintrc.js --cache --fix"
   }
 }
