@@ -23,14 +23,15 @@
   },
   "homepage": "https://rtcpeer.com",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.9.0",
-    "@typescript-eslint/parser": "^3.9.0",
-    "eslint": "^7.7.0",
-    "husky": "^4.2.5",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.11.0",
+    "eslint-config-begin": "^0.2.0",
+    "husky": "^4.3.0",
     "nodemon": "^2.0.4",
     "typedoc": "^0.18.0",
     "typedoc-plugin-internal-external": "^2.2.0",
-    "typedoc-plugin-no-inherit": "^1.1.10",
+    "typedoc-plugin-no-inherit": "^1.2.0",
     "typescript": "^3.9.7"
   },
   "husky": {

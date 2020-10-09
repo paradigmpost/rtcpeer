@@ -12,4 +12,3 @@ export interface RTPMediaExtensions extends TypedEventTarget<RTPMediaExtensionsE
     removeTrack(sender: RTCRtpSender): void;
     ontrack: ((this: RTCPeerConnection, ev: RTCTrackEvent) => any) | null;
 }
-

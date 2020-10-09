@@ -35,11 +35,11 @@ import { unexpectedError } from '../../util/unexpected-error';
  * ```
  *
  * ### Signaling server message handlers
- * 
+ *
  * When setting up a signaling server mechanism, messages from a corresponding (and likely remote) RTCPeer's `candidate` and `description` events should call these methods.
  *
  */
-export class RTCPeer extends TypedEventTarget<RTCPeerEventMap> 
+export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
 {
   private readonly connection: RTCPeerConnection;
   private offered = false;
@@ -161,7 +161,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
     const { candidate } = ev;
     this.dispatchEvent(new RTCPeerCandidateEvent(candidate));
   }
-  
+
   private async onNegotiationNeeded(_: Event) {
     this.offered = true;
 
@@ -173,7 +173,7 @@ export class RTCPeer extends TypedEventTarget<RTCPeerEventMap>
       if (!this.stable) return;
 
       await this.connection.setLocalDescription(offer);
-      
+
       const description = this.connection.localDescription;
       if (description === null) throw unexpectedError('description should not be null');
 

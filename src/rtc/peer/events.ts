@@ -24,4 +24,3 @@ export class RTCPeerDescriptionEvent extends Event {
     super('description');
   }
 }
-
