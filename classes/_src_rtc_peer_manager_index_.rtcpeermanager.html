@@ -1,0 +1,878 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>RTCPeerManager | RTCPeer</title>
+	<meta name="description" content="Documentation for RTCPeer">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">RTCPeer</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_src_rtc_peer_manager_index_.html">&quot;src/rtc/peer-manager/index&quot;</a>
+				</li>
+				<li>
+					<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html">RTCPeerManager</a>
+				</li>
+			</ul>
+			<h1>Class RTCPeerManager&lt;EventMap&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Provides mechanisms for sending and receiving streams with multiple, probably remote, RTCPeer objects.</p>
+					</div>
+					<p>The goal of RTCPeerManager is to make it easy to send the same content to many RTCPeer&#39;s at once, possibly while also receiving contents from those peers. Currently, only addTrack (via <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstream">addStream</a>) is managed. Regardless of whether you call <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addpeer">addPeer</a> before or after you call <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstream">addStream</a>, all peers should receive the content sent via addStream once they are connected.</p>
+					<a href="#signaling-server-message-handlers" id="signaling-server-message-handlers" style="color: inherit; text-decoration: none;">
+						<h3>Signaling server message handlers</h3>
+					</a>
+					<p>When setting up a signaling server mechanism, messages from a corresponding (and likely remote) RTCPeerManager&#39;s corresponding peer&#39;s <code>candidate</code> and <code>description</code> events should call these methods. You can use the <code>id</code> of <a href="_src_util_identifiable_event_.identifiableevent.html">IdentifiableEvent</a> to match messages between peers.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>EventMap</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="_src_util_typed_event_target_.typedeventtarget.html" class="tsd-signature-type">TypedEventTarget</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_src_rtc_peer_manager_events_.html#rtcpeermanagereventmap" class="tsd-signature-type">RTCPeerManagerEventMap</a><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">RTCPeerManager</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Events</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-event tsd-parent-kind-class tsd-is-static"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#event_streams" class="tsd-kind-icon">EVENT_<wbr>STREAMS</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#disposables" class="tsd-kind-icon">disposables</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#peers" class="tsd-kind-icon">peers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#streams" class="tsd-kind-icon">streams</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addpeer" class="tsd-kind-icon">add<wbr>Peer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstream" class="tsd-kind-icon">add<wbr>Stream</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstreamforpeer" class="tsd-kind-icon">add<wbr>Stream<wbr>For<wbr>Peer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#dispatchevent" class="tsd-kind-icon">dispatch<wbr>Event</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handlecandidate" class="tsd-kind-icon">handle<wbr>Candidate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handledescription" class="tsd-kind-icon">handle<wbr>Description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#haspeer" class="tsd-kind-icon">has<wbr>Peer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#hasstream" class="tsd-kind-icon">has<wbr>Stream</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#istrackevent" class="tsd-kind-icon">is<wbr>Track<wbr>Event</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#removepeer" class="tsd-kind-icon">remove<wbr>Peer</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new RTCPeer<wbr>Manager<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_rtc_peer_manager_index_.rtcpeermanager.html" class="tsd-signature-type">RTCPeerManager</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L28">src/rtc/peer-manager/index.ts:28</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initialize a new RTCPeerManager with the given ID. This ID is never used internally, and is a convenience property for consumers of RTCPeerManager to identify the object unique (e.g., when coordinating with a signaling server).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>a uniquely identifiable string for this RTCPeerManager, for when communicating outside of peer-to-peer/RTC channels, such as via a signaling server</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html" class="tsd-signature-type">RTCPeerManager</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Events</h2>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-class tsd-is-static">
+					<a name="event_streams" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> EVENT_<wbr>STREAMS</h3>
+					<div class="tsd-signature tsd-kind-icon">EVENT_<wbr>STREAMS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><a href="../modules/_src_rtc_peer_manager_events_.html#rtcpeermanagereventmap" class="tsd-signature-type">RTCPeerManagerEventMap</a><span class="tsd-signature-symbol"> = &quot;streams&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L28">src/rtc/peer-manager/index.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fires a <a href="_src_rtc_peer_manager_events_.rtcpeermanagerstreamsevent.html">RTCPeerManagerStreamsEvent</a> whenever the underlying connection fires a &quot;track&quot; event.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="disposables" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> disposables</h3>
+					<div class="tsd-signature tsd-kind-icon">disposables<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L21">src/rtc/peer-manager/index.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L35">src/rtc/peer-manager/index.ts:35</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a uniquely identifiable string for this RTCPeerManager, for when communicating outside of peer-to-peer/RTC channels, such as via a signaling server</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="peers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> peers</h3>
+					<div class="tsd-signature tsd-kind-icon">peers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L20">src/rtc/peer-manager/index.ts:20</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="_src_rtc_peer_index_.rtcpeer.html" class="tsd-signature-type">RTCPeer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="streams" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> streams</h3>
+					<div class="tsd-signature tsd-kind-icon">streams<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L22">src/rtc/peer-manager/index.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+					<a name="addeventlistener" class="tsd-anchor"></a>
+					<h3>add<wbr>Event<wbr>Listener</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener&lt;K, E&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.addeventlisteneroptions.html" class="tsd-signature-type">AddEventListenerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, listener<span class="tsd-signature-symbol">: </span><a href="../modules/_node_modules_typescript_lib_lib_dom_d_.html#eventlisteneroreventlistenerobject" class="tsd-signature-type">EventListenerOrEventListenerObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.addeventlisteneroptions.html" class="tsd-signature-type">AddEventListenerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_util_typed_event_target_.typedeventtarget.html">TypedEventTarget</a>.<a href="_src_util_typed_event_target_.typedeventtarget.html#addeventlistener">addEventListener</a></p>
+								<p>Overrides <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html">AnalyserNode</a>.<a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html#addeventlistener">addEventListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/util/typed-event-target.ts#L14">src/util/typed-event-target.ts:14</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>K<span class="tsd-signature-symbol">: </span><a href="../modules/_src_util_typed_event_target_.html#keys" class="tsd-signature-type">Keys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventMap</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">K</span></h5>
+								</li>
+								<li>
+									<h5>listener: <span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>ev: <span class="tsd-signature-type">E</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.addeventlisteneroptions.html" class="tsd-signature-type">AddEventListenerOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_util_typed_event_target_.typedeventtarget.html">TypedEventTarget</a>.<a href="_src_util_typed_event_target_.typedeventtarget.html#addeventlistener">addEventListener</a></p>
+								<p>Overrides <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html">AnalyserNode</a>.<a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html#addeventlistener">addEventListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/util/typed-event-target.ts#L23">src/util/typed-event-target.ts:23</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>listener: <a href="../modules/_node_modules_typescript_lib_lib_dom_d_.html#eventlisteneroreventlistenerobject" class="tsd-signature-type">EventListenerOrEventListenerObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.addeventlisteneroptions.html" class="tsd-signature-type">AddEventListenerOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addpeer" class="tsd-anchor"></a>
+					<h3>add<wbr>Peer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Peer<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L68">src/rtc/peer-manager/index.ts:68</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new RTCPeer, internally identified by the specified <code>id</code>, and adds to the managed array of peer objects.</p>
+								</div>
+								<p>If a stream has already been shared via <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstream">addStream</a>, then that stream is automatically shared with the newly created RTCPeer.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a unique string used to identify the underlying RTCPeer event when <code>candidate</code> and <code>description</code> events are fired and when the consumer wants to remove the peer via <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#removepeer">removePeer</a>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addstream" class="tsd-anchor"></a>
+					<h3>add<wbr>Stream</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Stream<span class="tsd-signature-symbol">(</span>stream<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L124">src/rtc/peer-manager/index.ts:124</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Start sharing a MediaStream object with any peers currently under management (and any peers added in the future)</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stream: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A MediaStream that will be shared to current and future peers</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="addstreamforpeer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> add<wbr>Stream<wbr>For<wbr>Peer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Stream<wbr>For<wbr>Peer<span class="tsd-signature-symbol">(</span>stream<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a>, peer<span class="tsd-signature-symbol">: </span><a href="_src_rtc_peer_index_.rtcpeer.html" class="tsd-signature-type">RTCPeer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L131">src/rtc/peer-manager/index.ts:131</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stream: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a></h5>
+								</li>
+								<li>
+									<h5>peer: <a href="_src_rtc_peer_index_.rtcpeer.html" class="tsd-signature-type">RTCPeer</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="dispatchevent" class="tsd-anchor"></a>
+					<h3>dispatch<wbr>Event</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">dispatch<wbr>Event<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.animationevent.html#event" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.abortsignal.html">AbortSignal</a>.<a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.abortsignal.html#dispatchevent">dispatchEvent</a></p>
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5417</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Dispatches a synthetic event event to target and returns true if either event&#39;s cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.animationevent.html#event" class="tsd-signature-type">Event</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="handlecandidate" class="tsd-anchor"></a>
+					<h3>handle<wbr>Candidate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Candidate<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, candidate<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.rtcicecandidate.html" class="tsd-signature-type">RTCIceCandidate</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L44">src/rtc/peer-manager/index.ts:44</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Passes the candidate to be handled by the RTCPeer specified by <code>id</code>.</p>
+								</div>
+								<p>This method, along with <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handledescription">handleDescription</a>, is used in the negotiation process in order for 2 (likely remote) RTCPeer&#39;s to establish a connection with each other. Use this method to respond to messages from an associated (likely remote) RTCPeerManager&#39;s <code>candidate</code> event, which is an <a href="_src_util_identifiable_event_.identifiableevent.html">IdentifiableEvent</a> wrapping a <a href="_src_rtc_peer_events_.rtcpeercandidateevent.html">RTCPeerCandidateEvent</a>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>candidate: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.rtcicecandidate.html" class="tsd-signature-type">RTCIceCandidate</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="handledescription" class="tsd-anchor"></a>
+					<h3>handle<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Description<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.rtcsessiondescription.html" class="tsd-signature-type">RTCSessionDescription</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L55">src/rtc/peer-manager/index.ts:55</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Passes the session description to be handled by the RTCPeer specified by <code>id</code>.</p>
+								</div>
+								<p>This method, along with <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handlecandidate">handleCandidate</a>, is used in the negotiation process in order for 2 (likely remote) RTCPeer&#39;s to establish a connection with each other. Use this method to respond to messages from an associated (likely remote) RTCPeerManager&#39;s <code>description</code> event, which is an <a href="_src_util_identifiable_event_.identifiableevent.html">IdentifiableEvent</a> wrapping a <a href="_src_rtc_peer_events_.rtcpeerdescriptionevent.html">RTCPeerDescriptionEvent</a>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>description: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.rtcsessiondescription.html" class="tsd-signature-type">RTCSessionDescription</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="haspeer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> has<wbr>Peer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Peer<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L98">src/rtc/peer-manager/index.ts:98</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="hasstream" class="tsd-anchor"></a>
+					<h3>has<wbr>Stream</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Stream<span class="tsd-signature-symbol">(</span>stream<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L142">src/rtc/peer-manager/index.ts:142</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check to see if the RTCPeerManager is currently sharing a MediaStream that originated from <strong>this machine</strong>.</p>
+								</div>
+								<p>Note that this method does not check for MediaStream&#39;s that are being received.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stream: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.mediastream.html" class="tsd-signature-type">MediaStream</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The MediaStream to check whether is currently streaming</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="istrackevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Track<wbr>Event</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Track<wbr>Event<span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.animationevent.html#event" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ev</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">RTCTrackEvent</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L102">src/rtc/peer-manager/index.ts:102</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ev: <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.animationevent.html#event" class="tsd-signature-type">Event</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ev</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">RTCTrackEvent</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+					<a name="removeeventlistener" class="tsd-anchor"></a>
+					<h3>remove<wbr>Event<wbr>Listener</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener&lt;K, E&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.eventlisteneroptions.html" class="tsd-signature-type">EventListenerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, listener<span class="tsd-signature-symbol">: </span><a href="../modules/_node_modules_typescript_lib_lib_dom_d_.html#eventlisteneroreventlistenerobject" class="tsd-signature-type">EventListenerOrEventListenerObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.eventlisteneroptions.html" class="tsd-signature-type">EventListenerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_util_typed_event_target_.typedeventtarget.html">TypedEventTarget</a>.<a href="_src_util_typed_event_target_.typedeventtarget.html#removeeventlistener">removeEventListener</a></p>
+								<p>Overrides <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html">AnalyserNode</a>.<a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html#removeeventlistener">removeEventListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/util/typed-event-target.ts#L46">src/util/typed-event-target.ts:46</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>K<span class="tsd-signature-symbol">: </span><a href="../modules/_src_util_typed_event_target_.html#keys" class="tsd-signature-type">Keys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventMap</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventMap</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">K</span></h5>
+								</li>
+								<li>
+									<h5>listener: <span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>ev<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>ev: <span class="tsd-signature-type">E</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.eventlisteneroptions.html" class="tsd-signature-type">EventListenerOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_util_typed_event_target_.typedeventtarget.html">TypedEventTarget</a>.<a href="_src_util_typed_event_target_.typedeventtarget.html#removeeventlistener">removeEventListener</a></p>
+								<p>Overrides <a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html">AnalyserNode</a>.<a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.analysernode.html#removeeventlistener">removeEventListener</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/util/typed-event-target.ts#L55">src/util/typed-event-target.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>listener: <a href="../modules/_node_modules_typescript_lib_lib_dom_d_.html#eventlisteneroreventlistenerobject" class="tsd-signature-type">EventListenerOrEventListenerObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_node_modules_typescript_lib_lib_dom_d_.eventlisteneroptions.html" class="tsd-signature-type">EventListenerOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removepeer" class="tsd-anchor"></a>
+					<h3>remove<wbr>Peer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Peer<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/paradigmpost/rtcpeer/blob/a73f7af/src/rtc/peer-manager/index.ts#L111">src/rtc/peer-manager/index.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the RTCPeer identified by the given ID from management</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the id by which the RTCPeer that should be removed was identified when it was added via <a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addpeer">addPeer</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_index_.html">&quot;src/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_rtc_peer_manager_events_.html">&quot;src/rtc/peer-<wbr>manager/events&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_src_rtc_peer_manager_index_.html">&quot;src/rtc/peer-<wbr>manager/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_rtc_peer_events_.html">&quot;src/rtc/peer/events&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_rtc_peer_index_.html">&quot;src/rtc/peer/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_rtc_peer_interfaces_.html">&quot;src/rtc/peer/interfaces&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_util_guid_from_description_.html">&quot;src/util/guid-<wbr>from-<wbr>description&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_util_identifiable_event_.html">&quot;src/util/identifiable-<wbr>event&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_util_typed_event_target_.html">&quot;src/util/typed-<wbr>event-<wbr>target&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_util_unexpected_error_.html">&quot;src/util/unexpected-<wbr>error&quot;</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-module tsd-is-external">
+						<a href="../modules/_node_modules_typescript_lib_lib_dom_d_.html">&quot;node_<wbr>modules/typescript/lib/lib.dom.d&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html" class="tsd-kind-icon">RTCPeer<wbr>Manager</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-class tsd-is-static">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#event_streams" class="tsd-kind-icon">EVENT_<wbr>STREAMS</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#disposables" class="tsd-kind-icon">disposables</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#peers" class="tsd-kind-icon">peers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#streams" class="tsd-kind-icon">streams</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addeventlistener" class="tsd-kind-icon">add<wbr>Event<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addpeer" class="tsd-kind-icon">add<wbr>Peer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstream" class="tsd-kind-icon">add<wbr>Stream</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#addstreamforpeer" class="tsd-kind-icon">add<wbr>Stream<wbr>For<wbr>Peer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#dispatchevent" class="tsd-kind-icon">dispatch<wbr>Event</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handlecandidate" class="tsd-kind-icon">handle<wbr>Candidate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#handledescription" class="tsd-kind-icon">handle<wbr>Description</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#haspeer" class="tsd-kind-icon">has<wbr>Peer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#hasstream" class="tsd-kind-icon">has<wbr>Stream</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#istrackevent" class="tsd-kind-icon">is<wbr>Track<wbr>Event</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite tsd-is-inherited">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#removeeventlistener" class="tsd-kind-icon">remove<wbr>Event<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_rtc_peer_manager_index_.rtcpeermanager.html#removepeer" class="tsd-kind-icon">remove<wbr>Peer</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
